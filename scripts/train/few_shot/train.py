@@ -5,6 +5,10 @@ from tqdm import tqdm
 import pandas as pd
 import numpy as np
 
+import sys
+
+sys.path.append("/mnt/Test")
+
 import torch
 import torch.optim as optim
 import torch.optim.lr_scheduler as lr_scheduler 
