@@ -92,7 +92,7 @@ def main(opt):
 
         meter_vals = log_utils.extract_meter_values(meters)
 
-        # #log train acc
+        #log train acc
         # file_path = '../../../data/RawData/output/train_Results.csv'
         # data_log = pd.read_csv(file_path)
         # train_acc = meter_vals['train']['acc']
