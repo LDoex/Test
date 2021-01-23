@@ -3,6 +3,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 import csv, os
+import sys
+
 from torch.autograd import Variable
 from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score
 from protonets.models import register_model
@@ -78,6 +80,7 @@ class Protonet(nn.Module):
 
         z = self.encoder.forward(x)
 
+        
         # save z into file, just use when run eval
         ######
         # index_support = np.row_stack((np.zeros(n_support),np.ones(n_support))).reshape(-1)
