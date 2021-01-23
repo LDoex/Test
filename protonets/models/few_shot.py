@@ -209,7 +209,7 @@ class Protonet(nn.Module):
 def load_protonet_conv(**kwargs):
     x_dim = kwargs['x_dim']
     hid_dim = kwargs['hid_dim']
-    z_dim = kwargs['z_dim']
+
 
     def conv_block(in_channels, out_channels):
         return nn.Sequential(
