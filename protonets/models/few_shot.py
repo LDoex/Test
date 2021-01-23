@@ -220,8 +220,8 @@ def load_protonet_conv(**kwargs):
         )
 
     encoder = nn.Sequential(
-        conv_block(x_dim[0], 16),
-        conv_block(16, 32),
+        conv_block(x_dim[0], 64),
+        # conv_block(16, 32),
 
         # conv_block(16, 16),
         Flatten()
