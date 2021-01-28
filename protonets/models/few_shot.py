@@ -139,7 +139,7 @@ class Protonet(nn.Module):
 
         # computing the teacher model softmax
         ###
-        distilling_model_path = '../../../scripts/train/few_shot/results/big_best_model.pt'
+        distilling_model_path = '../../../scripts/train/few_shot/results/small_best_model.pt'
         model_distilling = torch.load(distilling_model_path)
         model_distilling.eval()
         if xq.is_cuda:
@@ -157,15 +157,13 @@ class Protonet(nn.Module):
         teacher_distilled = F.softmax(-z_distilling_dists * 1.0 / T, dim=1).view(n_class, n_query, -1)
         ###
 
-        # #distilling loss
-        # ####
-        # a = 0.8
-        # T_ = T*T
-        # my_celoss = DistillingLoss()
-        # loss_soft = my_celoss(student_distilled, teacher_distilled)
-        # KD_loss= nn.KLDivLoss()(F.log_softmax(-dists*1.0/T, dim=1), F.softmax(-z_distilling_dists*1.0/T, dim=1))
-        # loss_hard = -log_p_y.gather(2, target_inds).squeeze().view(-1).mean()
-        # loss_val = a*KD_loss*T_ + (1-a)*loss_hard
+        #distilling loss
+        ####
+        a = 0.5
+        T_ = T*T
+        KD_loss= nn.KLDivLoss()(F.log_softmax(-dists*1.0/T, dim=1), F.softmax(-z_distilling_dists*1.0/T, dim=1))
+        loss_hard = -log_p_y.gather(2, target_inds).squeeze().view(-1).mean()
+        loss_val = a*KD_loss*T_ + (1-a)*loss_hard
 
         # #Teacher_Training_loss
         # log_distill = F.log_softmax(-dists * 1.0 / T, dim=1).view(n_class, n_query, -1)
@@ -175,7 +173,7 @@ class Protonet(nn.Module):
 
         # eval loss
         ###
-        loss_val = -log_p_y.gather(2, target_inds).squeeze().view(-1).mean()
+        # loss_val = -log_p_y.gather(2, target_inds).squeeze().view(-1).mean()
         ###
 
         # training loss
