@@ -29,7 +29,7 @@ parser.add_argument('--data.test_episodes', type=int, default=100, metavar='NTES
                     help="number of test episodes per epoch (default: 100)")
 parser.add_argument('--data.trainval', action='store_true', default=False, help="run in train+validation mode (default: False)")
 parser.add_argument('--data.sequential', action='store_true', default=False, help="use sequential sampler instead of episodic (default: False)")
-parser.add_argument('--data.cuda', action='store_true', default=True, help="run in CUDA mode (default: False)")
+parser.add_argument('--data.cuda', action='store_true', default=False, help="run in CUDA mode (default: False)")
 
 # model args
 default_model_name = 'protonet_conv'
