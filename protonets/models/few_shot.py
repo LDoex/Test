@@ -139,7 +139,7 @@ class Protonet(nn.Module):
 
         # computing the teacher model softmax
         ###
-        distilling_model_path = '../../../scripts/train/few_shot/results/small_best_model.pt'
+        distilling_model_path = '../../../scripts/train/few_shot/results/Teacher_model_loss=0.30.pt'
         model_distilling = torch.load(distilling_model_path)
         model_distilling.eval()
         if xq.is_cuda:
@@ -218,10 +218,10 @@ def load_protonet_conv(**kwargs):
         )
 
     encoder = nn.Sequential(
-        conv_block(x_dim[0], 64),
-        # conv_block(16, 32),
+        conv_block(x_dim[0], 8),
+        conv_block(8, 16),
 
-        # conv_block(16, 16),
+        # conv_block(32, 32),
         Flatten()
     )
 
